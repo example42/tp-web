@@ -45,3 +45,34 @@ group :development do
   gem 'spring'
 end
 
+gem 'bootstrap-sass', '~> 3.3.6'
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'guard', require: false
+  gem 'guard-rails', require: false
+  gem 'guard-bundler', require: false
+  gem 'guard-livereload', require: false
+  gem 'guard-minitest', require: false
+  gem 'guard-spring', require: false
+  gem 'letter_opener'
+  gem 'quiet_assets'
+  # pry stuff
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'pry-remote'
+  gem 'pry-byebug', '3.2.0'
+  gem 'hirb'
+  gem 'awesome_print'
+end
+
+group :test do
+  gem 'minitest', '~> 5.8'
+  gem 'minitest-bisect'
+  gem 'minitest-spec-rails'
+  gem 'minitest-reporters', '~> 1'
+  gem 'shoulda', '~> 3'
+  gem 'simplecov', '~> 0.10', require: false
+end
