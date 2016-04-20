@@ -44,7 +44,7 @@ class Manifest < ActiveRecord::Base
       applications.each do |app|
         app.generate_dir_hash(dir_hash)
       end
-      manifest["tp::dir_hash"] = conf_hash unless dir_hash.empty?
+      manifest["tp::dir_hash"] = dir_hash unless dir_hash.empty?
       manifest
     end
 end
