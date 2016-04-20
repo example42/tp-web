@@ -15,7 +15,6 @@ class CreateApplicationDirs < ActiveRecord::Migration
       t.boolean :purge
       t.boolean :recurse
       t.boolean :force
-      t.text :settings_hash
       t.boolean :debug
       t.string :debug_dir
       t.string :data_module

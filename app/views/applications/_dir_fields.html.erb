@@ -1,0 +1,37 @@
+<div class="nested-fields">
+  <%= f.input :name %>
+  <%= f.input :config_dir_notify %>
+  <%= f.input :config_dir_require %>
+  <%= f.input :debug %>
+  <%= f.input :force %>
+  <%= f.input :purge %>
+  <%= f.input :recurse %>
+  <%= f.input :base_dir %>
+  <%= f.input :data_module %>
+  <%= f.input :debug_dir %>
+  <%= f.input :ensure %>
+  <%= f.input :group %>
+  <%= f.input :mode %>
+  <%= f.input :owner %>
+  <%= f.input :path %>
+  <%= f.input :source %>
+  <%= f.input :vcsrepo %>
+  <div class="form-group select optional application_dirs_settings_hash">
+    <label class="select optional col-sm-3 control-label" for="application_dirs_settings_hash">Settings Hash</label>
+    <div class="col-sm-9">
+      <div class="row">
+        <div class='col-md-5'><strong>Key</strong></div>
+        <div class='col-md-5'><strong>Value</strong></div>
+        <div class='col-md-2'></div>
+      </div>
+      <%= f.simple_fields_for :settings_hash do |hash| %>
+        <%= render 'hash_fields', f: hash %>
+      <% end %>
+      <div class="application_dirs_settings_hash_links">
+        <%= link_to_add_association 'add setting', f, :settings_hash, partial: 'hash_fields' %>
+      </div>
+    </div>
+  </div>
+  <%= link_to_remove_association "remove dir", f %>
+  <hr />
+</div>

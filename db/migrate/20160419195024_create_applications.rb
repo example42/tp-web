@@ -3,8 +3,6 @@ class CreateApplications < ActiveRecord::Migration
     create_table :applications do |t|
       t.string  :name
       t.string  :ensure
-      t.text    :options_hash
-      t.text    :settings_hash
       t.boolean :auto_repo
       t.boolean :puppi_enable
       t.boolean :test_enable

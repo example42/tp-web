@@ -1,3 +1,34 @@
+# == Schema Information
+#
+# Table name: application_dirs
+#
+#  application_id     :integer
+#  base_dir           :string
+#  config_dir_notify  :boolean
+#  config_dir_require :boolean
+#  created_at         :datetime         not null
+#  data_module        :string
+#  debug              :boolean
+#  debug_dir          :string
+#  ensure             :string
+#  force              :boolean
+#  group              :string
+#  id                 :integer          not null, primary key
+#  mode               :string
+#  name               :string
+#  owner              :string
+#  path               :string
+#  purge              :boolean
+#  recurse            :boolean
+#  source             :string
+#  updated_at         :datetime         not null
+#  vcsrepo            :string
+#
+# Indexes
+#
+#  index_application_dirs_on_application_id  (application_id)
+#
+
 require 'test_helper'
 
 class Application::DirTest < ActiveSupport::TestCase

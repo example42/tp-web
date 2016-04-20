@@ -3,7 +3,7 @@ require 'test_helper'
 class GenerateYamlTest < ActionController::TestCase
   setup do
     @yaml =
-'---
+"---
 tp::install_hash:
   memcache:
     ensure: present
@@ -15,7 +15,7 @@ tp::conf_hash:
   apache:
     template: site/apache/httpd.conf.erb
     options_hash:
-      port: 80
+      port: '80'
       option_b: js
   apache::mime.types:
     template: site/apache/mime.types.erb
@@ -24,21 +24,25 @@ tp::conf_hash:
   mysql:
     template: site/mysql/my.cnf.erb
     options_hash:
-      port: 9191
+      port: '9191'
       option_c: js
-'
+"
 
     @manifest = Manifest.create!
     # apache
     @apache = Application.create!(name: 'apache')
     # add file
     @file = Application::Conf.create!
-    @file.options_hash = { 'port' => 80, 'option_b' => 'js' }
+    @file.options_hash.create(key: 'port', value: 80)
+    @file.options_hash.create(key: 'option_b', value: 'js')
     @apache.confs << @file
-    @apache.confs.create!(name: 'mime.types', template: 'site/apache/mime.types.erb', options_hash: {'option_a' => 'js'})
+    conf = @apache.confs.create!(name: 'mime.types', template: 'site/apache/mime.types.erb')
+    conf.options_hash.create(key: 'option_a', value: 'js')
 
     @mysql = Application.create!(name: 'mysql')
-    @mysql.confs.create!(options_hash: {'port' => 9191, 'option_c' => 'js'})
+    conf = @mysql.confs.create!
+    conf.options_hash.create(key: 'port', value: '9191')
+    conf.options_hash.create(key: 'option_c', value: 'js')
 
     @memcache = Application.create!(name: 'memcache')
     @manifest.applications = [@memcache, @apache, @mysql]

@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+/* margin for fixed navbar */
+body {
+  padding-top: 70px;
+  padding-bottom: 100px;
+}

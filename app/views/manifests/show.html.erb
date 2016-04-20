@@ -1,0 +1,22 @@
+<h3>Applications</h3>
+
+<table class="table table-bordered">
+<% @manifest.applications.order(name: :asc).each do |app| %>
+<tr>
+  <td><%= link_to app.name, application_path(id: app.name) %></td>
+</tr>
+<% end %>
+</table>
+
+<h3>Available Applications</h3>
+
+<table class="table table-bordered">
+<% @manifest.available_apps.in_groups_of(4) do |a, b, c, d| %>
+<tr>
+  <td><%= link_to a, add_app_to_manifest_path(a) if a %></td>
+  <td><%= link_to b, add_app_to_manifest_path(b) if b %></td>
+  <td><%= link_to c, add_app_to_manifest_path(c) if c %></td>
+  <td><%= link_to d, add_app_to_manifest_path(d) if d %></td>
+</tr>
+<% end %>
+</table>

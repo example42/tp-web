@@ -46,8 +46,13 @@ group :development do
 end
 
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'cocoon'
+gem 'paloma'
+gem 'simple_form'
+gem 'trailblazer-rails'
 
 group :development do
+  gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'guard', require: false

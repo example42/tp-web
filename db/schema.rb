@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419202154) do
+ActiveRecord::Schema.define(version: 20160420170738) do
 
   create_table "application_confs", force: :cascade do |t|
     t.string   "name"
@@ -28,8 +28,6 @@ ActiveRecord::Schema.define(version: 20160419202154) do
     t.string   "group"
     t.boolean  "config_file_notify"
     t.boolean  "config_file_require"
-    t.text     "options_hash"
-    t.text     "settings_hash"
     t.boolean  "debug"
     t.string   "debug_dir"
     t.string   "data_module"
@@ -55,7 +53,6 @@ ActiveRecord::Schema.define(version: 20160419202154) do
     t.boolean  "purge"
     t.boolean  "recurse"
     t.boolean  "force"
-    t.text     "settings_hash"
     t.boolean  "debug"
     t.string   "debug_dir"
     t.string   "data_module"
@@ -74,8 +71,6 @@ ActiveRecord::Schema.define(version: 20160419202154) do
     t.string   "info_template"
     t.boolean  "info_defaults"
     t.boolean  "log_enable"
-    t.text     "options_hash"
-    t.text     "settings_hash"
     t.string   "data_module"
     t.boolean  "verbose"
     t.integer  "application_id"
@@ -88,8 +83,6 @@ ActiveRecord::Schema.define(version: 20160419202154) do
   create_table "applications", force: :cascade do |t|
     t.string   "name"
     t.string   "ensure"
-    t.text     "options_hash"
-    t.text     "settings_hash"
     t.boolean  "auto_repo"
     t.boolean  "puppi_enable"
     t.boolean  "test_enable"
@@ -103,6 +96,18 @@ ActiveRecord::Schema.define(version: 20160419202154) do
   end
 
   add_index "applications", ["manifest_id"], name: "index_applications_on_manifest_id"
+
+  create_table "key_values", force: :cascade do |t|
+    t.string   "type"
+    t.string   "key"
+    t.string   "value"
+    t.integer  "keyable_id"
+    t.string   "keyable_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "key_values", ["keyable_type", "keyable_id"], name: "index_key_values_on_keyable_type_and_keyable_id"
 
   create_table "manifests", force: :cascade do |t|
     t.datetime "created_at", null: false

@@ -13,4 +13,21 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require paloma
+//= require bootstrap-sprockets
+//= require cocoon
 //= require_tree .
+
+var initializePaloma = function() {
+  Paloma.start();
+}
+
+$(document).on('page:load', function(){
+  if ($('.js-paloma-hook').data('id') != parseInt(Paloma.engine._request.id)) {
+    initializePaloma();
+  }
+});
+
+$(document).ready(function(){
+  initializePaloma();
+});

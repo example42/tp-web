@@ -8,8 +8,6 @@ class CreateApplicationPuppis < ActiveRecord::Migration
       t.string :info_template
       t.boolean :info_defaults
       t.boolean :log_enable
-      t.text :options_hash
-      t.text :settings_hash
       t.string :data_module
       t.boolean :verbose
       t.references :application, index: true, foreign_key: true

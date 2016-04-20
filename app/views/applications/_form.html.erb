@@ -1,0 +1,91 @@
+<div class='col-md-12'>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Application</h3>
+    </div>
+    <div class="panel-body">
+      <%= simple_form_for application, url: application_path(id: application.name), html: { class: 'form-horizontal' },
+        wrapper: :horizontal_form,
+        wrapper_mappings: {
+          check_boxes: :horizontal_radio_and_checkboxes,
+          radio_buttons: :horizontal_radio_and_checkboxes,
+          file: :horizontal_file_input,
+          boolean: :horizontal_boolean
+        } do |f| %>
+        <%= f.input :ensure, collection: [['Present', 'present'], ['Absent', 'absent']], include_blank: false %>
+        <%= f.input :auto_repo %>
+        <%= f.input :puppi_enable %>
+        <%= f.input :test_enable %>
+        <%= f.input :data_module %>
+        <%= f.input :debug_dir %>
+        <%= f.input :test_template %>
+        <div class="form-group select optional application_options_hash">
+          <label class="select optional col-sm-3 control-label" for="application_options_hash">Options Hash</label>
+          <div class="col-sm-9">
+            <div class="row">
+              <div class='col-md-5'><strong>Key</strong></div>
+              <div class='col-md-5'><strong>Value</strong></div>
+              <div class='col-md-2'></div>
+            </div>
+            <%= f.simple_fields_for :options_hash do |hash| %>
+              <%= render 'hash_fields', f: hash %>
+            <% end %>
+            <div class="application_options_hash_links">
+              <%= link_to_add_association 'add option', f, :options_hash, partial: 'hash_fields' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group select optional application_settings_hash">
+          <label class="select optional col-sm-3 control-label" for="application_settings_hash">Settings Hash</label>
+          <div class="col-sm-9">
+            <div class="row">
+              <div class='col-md-5'><strong>Key</strong></div>
+              <div class='col-md-5'><strong>Value</strong></div>
+              <div class='col-md-2'></div>
+            </div>
+            <%= f.simple_fields_for :settings_hash do |hash| %>
+              <%= render 'hash_fields', f: hash %>
+            <% end %>
+            <div class="application_settings_hash_links">
+              <%= link_to_add_association 'add setting', f, :settings_hash, partial: 'hash_fields' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Confs</h3>
+          </div>
+          <div class="panel-body">
+            <div id="confs">
+              <%= f.simple_fields_for :confs do |conf| %>
+                <%= render 'conf_fields', f: conf %>
+              <% end %>
+              <div class="links">
+                <%= link_to_add_association 'add conf', f, :confs %>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Dirs</h3>
+          </div>
+          <div class="panel-body">
+            <div id="dirs">
+              <%= f.simple_fields_for :dirs do |dir| %>
+                <%= render 'dir_fields', f: dir %>
+              <% end %>
+              <div class="links">
+                <%= link_to_add_association 'add dir', f, :dirs %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,18 @@
+# == Schema Information
+#
+# Table name: manifests
+#
+#  created_at :datetime         not null
+#  id         :integer          not null, primary key
+#  updated_at :datetime         not null
+#
+
 class Manifest < ActiveRecord::Base
   has_many :applications
+
+  def available_apps
+    TinyData.all
+  end
 
   def to_manifest
     manifest = {}

@@ -1,3 +1,26 @@
+# == Schema Information
+#
+# Table name: applications
+#
+#  auto_repo     :boolean
+#  created_at    :datetime         not null
+#  data_module   :string
+#  debug_dir     :string
+#  debug_enable  :boolean
+#  ensure        :string
+#  id            :integer          not null, primary key
+#  manifest_id   :integer
+#  name          :string
+#  puppi_enable  :boolean
+#  test_enable   :boolean
+#  test_template :string
+#  updated_at    :datetime         not null
+#
+# Indexes
+#
+#  index_applications_on_manifest_id  (manifest_id)
+#
+
 require 'test_helper'
 
 class ApplicationTest < ActiveSupport::TestCase
@@ -15,6 +38,32 @@ class ApplicationTest < ActiveSupport::TestCase
     should "generate hash" do
       app = described_class.create(name: 'apache')
       app.generate_install_hash.must_equal({"ensure"=>"present"})
+    end
+
+    should "include install hash" do
+      app = described_class.create(name: 'apache')
+      app.options_hash.create(key: 'foo', value: 'bar')
+      app.options_hash.create(key: 'baz', value: 'xyz')
+      app.generate_install_hash.must_equal({
+        "ensure"=>"present",
+        "options_hash" => {
+          "foo" => "bar",
+          "baz" => "xyz"
+        }
+      })
+    end
+
+    should "include settings hash" do
+      app = described_class.create(name: 'apache')
+      app.settings_hash.create(key: 'foo', value: 'bar')
+      app.settings_hash.create(key: 'baz', value: 'xyz')
+      app.generate_install_hash.must_equal({
+        "ensure"=>"present",
+        "settings_hash" => {
+          "foo" => "bar",
+          "baz" => "xyz"
+        }
+      })
     end
   end
 

@@ -18,8 +18,6 @@ class CreateApplicationConfs < ActiveRecord::Migration
       t.string  :group
       t.boolean :config_file_notify
       t.boolean :config_file_require
-      t.text    :options_hash
-      t.text    :settings_hash
       t.boolean :debug
       t.string  :debug_dir
       t.string  :data_module
