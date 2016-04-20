@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  ensure: MyString
+  source: MyString
+  vcsrepo: MyString
+  base_dir: MyString
+  path: MyString
+  mode: MyString
+  owner: MyString
+  group: MyString
+  config_dir_notify: false
+  config_dir_require: false
+  purge: false
+  recurse: false
+  force: false
+  settings: MyText
+  debug: false
+  debug_dir: MyString
+  data_module: MyString
+  application_id: 
+
+two:
+  name: MyString
+  ensure: MyString
+  source: MyString
+  vcsrepo: MyString
+  base_dir: MyString
+  path: MyString
+  mode: MyString
+  owner: MyString
+  group: MyString
+  config_dir_notify: false
+  config_dir_require: false
+  purge: false
+  recurse: false
+  force: false
+  settings: MyText
+  debug: false
+  debug_dir: MyString
+  data_module: MyString
+  application_id: 

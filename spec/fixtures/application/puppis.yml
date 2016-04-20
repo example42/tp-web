@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ensure: MyString
+  check_enable: false
+  check_template: MyString
+  info_enable: false
+  info_template: MyString
+  info_defaults: false
+  log_enable: false
+  options: MyText
+  settings: 
+  data_module: MyString
+  verbose: false
+
+two:
+  ensure: MyString
+  check_enable: false
+  check_template: MyString
+  info_enable: false
+  info_template: MyString
+  info_defaults: false
+  log_enable: false
+  options: MyText
+  settings: 
+  data_module: MyString
+  verbose: false
