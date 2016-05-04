@@ -4,7 +4,7 @@ class TinyDataTest < ActiveSupport::TestCase
   context ".all" do
     should "contains apache" do
       all = described_class.all
-      all.size.must_equal 105
+      all.size.must_equal 107
       all.must_include 'apache'
     end
   end
