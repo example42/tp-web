@@ -22,6 +22,7 @@
 #  path                :string
 #  source              :string
 #  template            :string
+#  template_content    :text
 #  updated_at          :datetime         not null
 #
 # Indexes
@@ -32,6 +33,24 @@
 require 'test_helper'
 
 class Application::ConfTest < ActiveSupport::TestCase
+  context "validate uniqueness name" do
+    setup do
+      @apache = Application.create!(name: 'apache')
+      @ps = Application.create!(name: 'puppetserver')
+    end
+
+    should "allow duplicated name on different application" do
+      @apache.confs.create!(name: 'foo')
+      err = ->{ @apache.confs.create!(name: 'foo') }.must_raise ActiveRecord::RecordInvalid
+      err.message.must_match /Name has already been taken on this application/
+    end
+
+    should "not allow duplicated name on same application" do
+      @apache.confs.create!(name: 'foo')
+      @ps.confs.create!(name: 'foo').valid?.must_equal true
+    end
+  end
+
   context "#generate_hash" do
     context "default conf" do
       setup do

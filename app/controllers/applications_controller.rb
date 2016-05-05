@@ -25,6 +25,7 @@ class ApplicationsController < ApplicationController
       confs_attributes: [
         :id, :name, :base_dir, :config_file_notify, :config_file_require, :content, :data_module,
         :debug, :debug_dir, :ensure, :epp, :group, :mode, :owner, :path, :source, :template,
+        :template_content,
         :_destroy,
         options_hash_attributes: [:id, :key, :value, :_destroy],
         settings_hash_attributes: [:id, :key, :value, :_destroy]

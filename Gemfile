@@ -47,6 +47,7 @@ end
 
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'cocoon'
+gem 'codemirror-rails'
 gem 'paloma'
 gem 'simple_form'
 gem 'trailblazer-rails'

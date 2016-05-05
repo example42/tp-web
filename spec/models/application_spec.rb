@@ -34,6 +34,20 @@ class ApplicationTest < ActiveSupport::TestCase
     end
   end
 
+  context "#after_create" do
+    context "load_options" do
+      setup do
+        @puppetserver = described_class.create(name: 'puppetserver')
+        @conf = @puppetserver.confs.find_by(name: 'init')
+      end
+      should "set all options" do
+        @conf.options_hash.size.must_equal 3
+        @conf.options_hash.find_by(key: 'java_args').value.must_equal '-Xms2g -Xmx2g -XX:MaxPermSize=256m'
+        @conf.template_content.must_equal File.read('tinydata/templates/puppetserver/init.erb')
+      end
+    end
+  end
+
   context "#generate_install_hash" do
     should "generate hash" do
       app = described_class.create(name: 'apache')

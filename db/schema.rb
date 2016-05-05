@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160420170738) do
     t.text     "options"
     t.string   "ensure"
     t.string   "source"
+    t.text     "template_content"
     t.string   "epp"
     t.string   "content"
     t.string   "base_dir"

@@ -5,7 +5,7 @@ class GenerateYamlTest < ActionController::TestCase
     @yaml =
 "---
 tp::install_hash:
-  memcache:
+  memcached:
     ensure: present
   apache:
     ensure: present
@@ -44,8 +44,8 @@ tp::conf_hash:
     conf.options_hash.create(key: 'port', value: '9191')
     conf.options_hash.create(key: 'option_c', value: 'js')
 
-    @memcache = Application.create!(name: 'memcache')
-    @manifest.applications = [@memcache, @apache, @mysql]
+    @memcached = Application.create!(name: 'memcached')
+    @manifest.applications = [@memcached, @apache, @mysql]
   end
   should "generate right yaml" do
     @manifest.to_manifest.must_equal @yaml

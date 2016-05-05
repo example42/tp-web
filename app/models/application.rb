@@ -36,6 +36,8 @@ class Application < ActiveRecord::Base
   has_many :settings_hash, as: :keyable, class_name: 'KeyValue::SettingsHash'
   accepts_nested_attributes_for :settings_hash, reject_if: :all_blank, allow_destroy: true
 
+  after_create :load_options
+
   def generate_install_hash
     hash = {}
     puppet_attributes.keys.each do |attr|
@@ -67,6 +69,26 @@ class Application < ActiveRecord::Base
   end
 
   private
+    def load_options
+      load_file_template
+      load_file_options
+    end
+
+    def load_file_template
+      template = tiny_data.file_template
+      return if template.nil?
+      confs.create!(name: 'init', template_content: template)
+    end
+
+    def load_file_options
+      file_options = tiny_data.file_options
+      return if file_options.nil?
+      init_file = confs.find_by(name: 'init')
+      file_options.each_pair do |k, v|
+        init_file.options_hash.create!(key: k, value: v)
+      end
+    end
+
     def generate_type_hash(type)
       type_hash = {}
       send("#{type}_hash").each do |element|

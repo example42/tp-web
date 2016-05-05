@@ -22,6 +22,7 @@
 #  path                :string
 #  source              :string
 #  template            :string
+#  template_content    :text
 #  updated_at          :datetime         not null
 #
 # Indexes
@@ -31,6 +32,9 @@
 
 class Application::Conf < ActiveRecord::Base
   belongs_to :application
+  validates :name, uniqueness: { scope: :application_id,
+    message: "has already been taken on this application"
+  }
 
   has_many :options_hash, as: :keyable, class_name: 'KeyValue::OptionsHash'
   accepts_nested_attributes_for :options_hash, reject_if: :all_blank, allow_destroy: true

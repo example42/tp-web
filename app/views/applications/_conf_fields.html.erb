@@ -15,6 +15,7 @@
   <%= f.input :path %>
   <%= f.input :source %>
   <%= f.input :template %>
+  <%= f.input :template_content, as: :text, input_html: { rows: 15, cols: 10, class: 'editor' } %>
   <div class="form-group select optional application_confs_options_hash">
     <label class="select optional col-sm-3 control-label" for="application_confs_options_hash">Options Hash</label>
     <div class="col-sm-9">

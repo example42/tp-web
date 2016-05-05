@@ -17,6 +17,13 @@ Dir.chdir APP_ROOT do
   #   system "cp config/database.yml.sample config/database.yml"
   # end
 
+  puts "\n== Cloning submodules =="
+  system "git submodule update --init --recursive"
+
+  Dir.chdir File.join(APP_ROOT, 'puppet-modules') do
+    system "r10k puppetfile install"
+  end
+
   puts "\n== Preparing database =="
   system "bin/rake db:setup"
 

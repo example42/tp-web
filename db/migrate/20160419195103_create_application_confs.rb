@@ -9,6 +9,7 @@ class CreateApplicationConfs < ActiveRecord::Migration
       t.string  :ensure
       t.string  :source
       t.string  :template
+      t.text    :template_content
       t.string  :epp
       t.string  :content
       t.string  :base_dir
